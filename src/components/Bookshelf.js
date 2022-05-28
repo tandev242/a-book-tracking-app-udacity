@@ -1,7 +1,7 @@
 import React from 'react'
 import BookCard from './BookCard'
 import { standardizeName } from '../utils/validator'
-
+import PropTypes from 'prop-types'
 function Bookshelf(props) {
     const { shelfName, books, updateShelf } = props
 
@@ -23,6 +23,12 @@ function Bookshelf(props) {
             </div>
         </div>
     )
+}
+
+Bookshelf.propTypes = {
+    shelfName: PropTypes.string.isRequired,
+    books: PropTypes.array.isRequired,
+    updateShelf: PropTypes.func.isRequired,
 }
 
 export default Bookshelf

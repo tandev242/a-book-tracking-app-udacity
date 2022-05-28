@@ -21,7 +21,7 @@ function BookDetails() {
     return (
         <div className="book-details">
             <div className="book-details-top">
-                <div className="book-details-cover" style={{ backgroundImage: `url("${book.imageLinks.thumbnail}")` }}></div>
+                <div className="book-details-cover" style={{ backgroundImage: `url("${book.imageLinks ? book.imageLinks.thumbnail : ""})` }}></div>
             </div>
             <div className="book-details-title">{book.title}</div>
             {

@@ -32,6 +32,7 @@ To get started developing right away:
     ├── utils # Helpful functions, API for your app.
     │   ├── BooksAPI.js
     │   ├── validator.js
+    │   └── useDebounce.js # this is the function to optimize my search function.
     ├── icons # Helpful images for your app. Use at your discretion.
     │   ├── add.svg
     │   ├── arrow-back.svg

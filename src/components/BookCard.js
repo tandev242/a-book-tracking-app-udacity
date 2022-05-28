@@ -1,31 +1,28 @@
 import React from 'react'
 import { standardizeName } from '../utils/validator'
 import { Link } from "react-router-dom"
+import PropTypes from 'prop-types'
 
 function BookCard(props) {
     const { book, updateShelf } = props
-    const options = ['currentlyReading', 'wantToRead', 'read']
+    const options = ['currentlyReading', 'wantToRead', 'read', 'none']
 
     return (
         <div className="book">
             <div className="book-top">
                 <Link to={`/book-details/${book.id}`}>
-                    <div className="book-cover" style={{ width: 128, height: 174, backgroundImage: `url("${book.imageLinks.smallThumbnail}")` }}></div>
+                    <div className="book-cover" style={{ width: 128, height: 174, backgroundImage: `url("${book.imageLinks ? book.imageLinks.thumbnail : ""})` }}></div>
                 </Link>
-                {
-                    updateShelf && (<div className="book-shelf-changer">
-                        <select defaultValue={book.shelf} onChange={(e) => updateShelf(book, e.target.value)}>
-                            <option value="move" disabled>Move to...</option>
-                            {
-                                options.map((option, index) =>
-                                    <option value={option} key={index}>{standardizeName(option)}</option>
-                                )
-                            }
-                            <option value="none">None</option>
-                        </select>
-                    </div>)
-                }
-
+                <div className="book-shelf-changer">
+                    <select defaultValue={book.shelf} onChange={(e) => updateShelf(book, e.target.value)}>
+                        <option value="move" disabled>Move to...</option>
+                        {
+                            options.map((option, index) =>
+                                <option value={option} key={index}>{standardizeName(option)}</option>
+                            )
+                        }
+                    </select>
+                </div>
             </div>
             <div className="book-title">{book.title}</div>
             {
@@ -37,6 +34,11 @@ function BookCard(props) {
             }
         </div>
     )
+}
+
+BookCard.propTypes = {
+    book: PropTypes.object.isRequired,
+    updateShelf: PropTypes.func.isRequired,
 }
 
 export default BookCard

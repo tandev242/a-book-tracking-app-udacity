@@ -12,7 +12,7 @@ function BooksApp() {
       <div className="app">
         <Switch>
           <Route exact path="/" component={ListBooks} />
-          <Route exact path="/search-books" component={SearchBooks} />
+          <Route exact path="/search" component={SearchBooks} />
           <Route path="/book-details/:id" component={BookDetails} />
         </Switch>
       </div>
