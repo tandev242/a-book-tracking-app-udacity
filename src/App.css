@@ -190,7 +190,7 @@ body, .app {
 
 .book-details-top {
   position: relative;
-  height: 200px;
+  height: 355px;
   display: flex;
   align-items: flex-end;
 }
@@ -199,7 +199,8 @@ body, .app {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   background: #eee;
   background-repeat: no-repeat;
-  background-size: 256px 348px;
+  background-size: cover;
+  align-self: center;
   width: 256px;
   height: 348px;
 }
