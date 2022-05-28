@@ -17,7 +17,11 @@ function BooksApp() {
     const updateShelf = async (book, shelf) => {
         book.shelf = shelf
         await BooksAPI.update(book, shelf)
-        setBooks([...books.filter(b => b.id !== book.id), book])
+        if (shelf === 'none') {
+            setBooks([...books.filter(b => b.id !== book.id)])
+        } else {
+            setBooks([...books.filter(b => b.id !== book.id), book])
+        }
     }
 
     const categorizeBooksByShelf = (books) => {
