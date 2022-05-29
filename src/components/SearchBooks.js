@@ -13,11 +13,23 @@ function SearchBooks() {
         history.goBack()
     }
 
+    const addShelfToBook = (book, myBooks) => {
+        myBooks.forEach(b => {
+            if (b.id === book.id) {
+                book.shelf = b.shelf
+            }
+        })
+        return book
+    }
+
     useEffect(() => {
         const getBooksSearched = async () => {
-            const books = await BooksAPI.search(key, 20)
-            if (books && !books.error) {
-                setBooks(books)
+            const foundBooks = await BooksAPI.search(key, 20)
+            if (foundBooks && !foundBooks.error) {
+                const myBooks = await BooksAPI.getAll()
+                // Search api return value has no 'shelf' field so we need to check it with our books and add it to book
+                const mergedBooks = foundBooks.map(book => addShelfToBook(book, myBooks))
+                setBooks(mergedBooks)
             } else {
                 setBooks([])
             }
@@ -40,12 +52,20 @@ function SearchBooks() {
             <div className="search-books-results">
                 <ol className="books-grid">
                     {
-                        books.map(book => <li key={book.id}>
-                            <BookCard
-                                book={book}
-                                updateShelf={updateShelf}
-                            />
-                        </li>)
+                        key ?
+                            (
+                                books.length > 0 ? books.map(book =>
+                                    <li key={book.id}>
+                                        <BookCard
+                                            book={book}
+                                            updateShelf={updateShelf}
+                                        />
+                                    </li>)
+                                    :
+                                    <h1>Can't find the book you're looking for !</h1>
+                            )
+                            :
+                            <h1>Please enter a keyword to search !</h1>
                     }
                 </ol>
             </div>

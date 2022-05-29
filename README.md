@@ -28,7 +28,8 @@ To get started developing right away:
     │   ├── ListBooks.js
     │   ├── SearchBooks.js
     │   ├── BooksDetails
-    │   └── Bookshelf.js
+    │   ├── Bookshelf.js
+    │   └── RatingCard.js
     ├── utils # Helpful functions, API for your app.
     │   ├── BooksAPI.js
     │   ├── validator.js
